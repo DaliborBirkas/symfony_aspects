@@ -3,10 +3,11 @@
 namespace App\DataFixtures;
 
 use App\Entity\User;
+use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-class UserFixture
+class UserFixture extends Fixture
 {
     public function __construct(
         private readonly UserPasswordHasherInterface $passwordHasher
@@ -30,7 +31,7 @@ class UserFixture
             'firstName' => 'Teste',
             'lastName' => 'Usererr',
             'password' => 'test300',
-            'roles' => ['ROLE_USER', 'ROLE_ADMIN'],
+            'roles' => ['ROLE_USER'],
             'isVerified' => true,
         ]
     ];
@@ -42,7 +43,7 @@ class UserFixture
             $user->setEmail($userData['email'])
                 ->setFirstName($userData['firstName'])
                 ->setLastName($userData['lastName'])
-                // ->setPassword($this->passwordHasher->hashPassword($user, $userData['password']))
+                ->setPassword($this->passwordHasher->hashPassword($user, $userData['password']))
                 ->setRoles($userData['roles'])//->setVerified($userData['isVerified'])
             ;
 
