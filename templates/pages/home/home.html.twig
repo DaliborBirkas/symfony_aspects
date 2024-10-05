@@ -1,1 +1,9 @@
 {% extends 'base.html.twig' %}
+
+{% block body %}
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <body>
+        aaaa
+        </body>
+    {% endif %}
+{% endblock %}
