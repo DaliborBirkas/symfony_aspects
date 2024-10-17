@@ -3,7 +3,21 @@
 {% block body %}
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         <body>
-        aaaa
+        {{ app.flashes('success') }}
+        {% for flash in app.flashes('success') %}
+            <div class="alert alert-success">{{ flash }}</div>
+        {% endfor %}
+
+        <div class="dropdown">
+            {% if is_granted('IS_IMPERSONATOR') %}
+                <li>
+                    <a class="dropdown-item" href="{{ path('app_home', {
+                        '_switch_user': '_exit'
+                    }) }}">Exit Impersonation</a>
+                </li>
+            {% endif %}
+        </div>
+
         </body>
     {% endif %}
 {% endblock %}

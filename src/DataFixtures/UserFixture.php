@@ -33,6 +33,15 @@ class UserFixture extends Fixture
             'password' => 'test300',
             'roles' => ['ROLE_USER'],
             'isVerified' => true,
+        ],
+        [
+            'email' => 'obicankorisnik@gmail.com',
+            'username' => 'obicankorisnik',
+            'firstName' => 'Obican',
+            'lastName' => 'Korisnik',
+            'password' => 'obicankorisnik',
+            'roles' => ['ROLE_USER'],
+            'isVerified' => true,
         ]
     ];
 
@@ -44,7 +53,8 @@ class UserFixture extends Fixture
                 ->setFirstName($userData['firstName'])
                 ->setLastName($userData['lastName'])
                 ->setPassword($this->passwordHasher->hashPassword($user, $userData['password']))
-                ->setRoles($userData['roles'])//->setVerified($userData['isVerified'])
+                ->setRoles($userData['roles'])
+                ->setVerified($userData['isVerified'])
             ;
 
             $manager->persist($user);

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Verifikuj email{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="bg-light mt-4 p-4">
+                <h1>Verifikujte Vaš nalog</h1>
+                {% for flash in app.flashes('error') %}
+                    <div class="alert alert-danger">aaa{{ flash }}</div>
+                {% endfor %}
+                {{ form_start(resendVerificationEmailForm) }}
+                <p>
+                    Verifikacioni e-mail je prvi put prilikom verifikacije. Ako zelite da vam stigne opet unesite email.
+                </p>
+                {{ form_row(resendVerificationEmailForm.email) }}
+                <button type="submit" class="btn btn-primary">Posalji ponovo email</button>
+                {{ form_end(resendVerificationEmailForm) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
